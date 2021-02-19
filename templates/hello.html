@@ -1,8 +1,26 @@
 <!doctype html>
 
 <title>Hello from Flask</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+<script>
+	function loadXMLDoc()
+	    {
+	        var req = new XMLHttpRequest()
+	        req.onreadystatechange = function()
+	        {
+	            if (req.readyState == 4)
+	            {
+	                if (req.status != 200)
+	                {
+	                    //error handling code here
+	                }
+	                else
+	                {
+	                    var response = JSON.parse(req.responseText)
+	                    document.getElementById('myDiv').innerHTML = response.username
+	                }
+	            }
+	        }
+</script>
+	<h1>Testing</h1>
+	<p>{{name}}</p>
+	<p>{{name.query_string}}</p>
