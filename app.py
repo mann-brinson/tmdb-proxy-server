@@ -43,24 +43,6 @@ tmdb_key = "2e510746ca28d7041056c7e57108de4c"
 #     return 'Subpath %s' % escape(subpath)
 
 ########## URL BUILDING ########## 
-@app.route('/')
-def index():
-	return 'fart'
-
-@app.route('/login')
-def login():
-	return 'fart'
-
-@app.route('/user/<username>')
-def profile(username):
-
-	#Test: Return a json object based on query string params
-	url_raw = url_for('profile', username=username)
-	resp_dict = {"query_string": url_raw,
-				"username": username}
-	resp_j = json.dumps(resp_dict)
-	return resp_dict
-
 @app.route('/home', methods=['GET'])
 def home():
 	class HomePage():
@@ -116,7 +98,13 @@ def home():
 	home_doc_resp = flask.jsonify(home.home_doc)
 	home_doc_resp.headers.add('Access-Control-Allow-Origin', '*')
 	return home_doc_resp
-	# return render_template('home.html', doc=home.home_doc)
+	# return render_template('home.html', doc=home_doc_resp)
+	# return render_template('xhr_test.html', doc=home_doc_resp)
+
+@app.route('/', methods=['GET'])
+def client_side():
+	return render_template('home.html')
+
 	
 
 ########## RENDER TEMPLATE ########## 

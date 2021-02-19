@@ -1,8 +1,40 @@
-<!doctype html>
+<html>
+<body>
 
-<title>Hello from Flask</title>
-<h1>Testing</h1>
+<h2>Using the XMLHttpRequest Object</h2>
 
+<div id="demo">
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+</div>
+
+<script src>
+  // Testing
+
+
+  function loadXMLDoc() {
+    const url1 = "https://api.themoviedb.org/3/trending/movie/week?api_key=2e510746ca28d7041056c7e57108de4c";
+    // const url1 = "https://csci571testing.blob.core.windows.net/hw6/home_page.json";
+    // const url1 = "https://csci571hw5mm.azurewebsites.net/";
+    const url1 = "https://tmdb-proxy-server.azurewebsites.net/home";
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("demo").innerHTML =
+        this.responseText;
+      }
+    };
+    req.open("GET", url1, true);
+    req.send();
+
+  }
+</script>
+
+
+</body>
+</html> -->
+
+<!--  -->
+<!DOCTYPE html>
 <html>
   <head>
     <!-- <link rel="stylesheet" href="style.css" -->
@@ -153,6 +185,30 @@
   
 
 </script>
+
+<!-- VERSION 1: Load all response on click -->
+
+<!-- <div id="demo">
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+</div> -->
+
+<!-- <script>
+function loadXMLDoc() {
+  var req = new XMLHttpRequest();
+
+  // Working if CORS enabled on flask server
+  const url1 = "http://localhost:5000/home";
+
+  req.onreadystatechange = function() {
+    if (req.readyState == 4 && req.status == 200) {
+      document.getElementById("demo").innerHTML =
+      req.responseText;
+    }
+  };
+  req.open("GET", url1, true);
+  req.send();
+};
+</script> -->
 
 </body>
 </html>
