@@ -2,7 +2,6 @@ import json
 import requests
 
 import asyncio
-import json
 from aiohttp import ClientSession
 
 class HomePage():
@@ -22,7 +21,7 @@ class HomePage():
         items = r.json()['results'][:5]
         items_trend = [{'tmdb_id': m['id'], 
                     'backdrop_path': m['backdrop_path'],
-                    'title': m['title'],
+                    'name': m['title'],
                     'release_date': m['release_date']
                     } for m in items]
 
@@ -126,7 +125,7 @@ class SearchPage():
                 if m['media_type'] == 'movie':
                     desired_feats = movie_feats
                 elif m['media_type'] == 'tv':
-                    desired_feats = movie_feats
+                    desired_feats = tv_feats
                 else:
                 	continue
             
@@ -175,6 +174,7 @@ class SearchPage():
         self.doc['search_result'] = items_extract
 
 class RespParser():
+    '''Used for parsing details for a given movie or tv id. '''
     def __init__(self):
         self.tmdb_key = "2e510746ca28d7041056c7e57108de4c"
         
