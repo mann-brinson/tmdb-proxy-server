@@ -10,7 +10,8 @@ function selectView(active_page_type, inactive_page_type) {
 }
 
 // Works if CORS enabled on flask server
-const url1 = "http://localhost:5000/home"; 
+// const url1 = "http://localhost:5000/home"; 
+const url1 = "https://tmdb-proxy-server.azurewebsites.net/home";
 var slideIndex1 = 0;
 var slideIndex2 = 0;
 
@@ -160,7 +161,8 @@ function validateForm() {
   console.log(content_type); //Test
 
   //REQUEST DRIVER
-  const url_base = "http://localhost:5000/search?";
+  // const url_base = "http://localhost:5000/search?";
+  const url_base = "https://tmdb-proxy-server.azurewebsites.net/search?";
   const query = new URLSearchParams({
       content_type: content_type,
     search_terms: search_terms,
@@ -239,12 +241,15 @@ function divsFromJsonSearch(req) {
       record.appendChild(col1);
 
       //Poster path
-      var img = document.createElement("img"); 
-      const poster_path = search_result[i]['poster_path']
-      img.src = poster_path;
-      img.classList.add("movie_item_img");
-      img.style.width = "185px";
-      col1.appendChild(img);
+      var img2 = document.createElement("img"); 
+      const poster_path = search_result[i]['poster_path'];
+      console.log({'poster_path': poster_path});
+      img2.setAttribute('src', poster_path);
+      // img2.src = "";
+      // img2.src = poster_path;
+      console.log({'poster_set': img2.src});
+      img2.style.width = "185px";
+      col1.appendChild(img2);
 
       //// COL 2
       var col2 = document.createElement("div"); //Item header
@@ -344,7 +349,8 @@ function generateDetailsModal(button_element) {
   console.log(content_id);
 
   // Construct url
-  const url_base = "http://localhost:5000/detail?";
+  // const url_base = "http://localhost:5000/detail?";
+  const url_base = "https://tmdb-proxy-server.azurewebsites.net/detail?";
   //Ex: /detail?entity_type=movie&entity_id=155
   const query = new URLSearchParams({
     entity_type: content_type,

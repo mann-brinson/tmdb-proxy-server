@@ -56,7 +56,7 @@ class SearchPage():
     def __init__(self, content_type, search_terms):
         #Supplied Parameters
         self.tmdb_key = "2e510746ca28d7041056c7e57108de4c"
-        self.poster_base = "https:/www.themoviedb.org/t/p/w1280"
+        self.poster_base = "https://www.themoviedb.org/t/p/w1280"
         self.genre_files = ['genre_movie.json', 'genre_tv.json']
         
         #Computed Parameters
@@ -87,7 +87,6 @@ class SearchPage():
         '''Gets content based off user content type and search terms.
         search_terms - a string containing one or more words
         content_type - "tv", "movie" '''
-        poster_base = "https:/www.themoviedb.org/t/p/w1280"
 
         #Check if multiple search terms
         terms_list = self.search_terms.split(' ')
@@ -147,7 +146,7 @@ class SearchPage():
             poster_path = m['poster_path']
             if poster_path.split('/')[-1] == 'movie_placeholder.png': pass
             else:
-                poster_full = f'{poster_base}{poster_path}'
+                poster_full = f'{self.poster_base}{poster_path}'
                 items_extract[idx]['poster_path'] = poster_full
 
             #Get the genre names

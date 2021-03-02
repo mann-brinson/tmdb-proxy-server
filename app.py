@@ -64,32 +64,5 @@ def detail():
 	return detail_resp
 
 
-########## RENDER TEMPLATE ########## 
-# @app.route('/hello/<name>')
-# def hello(name=None):
-
-# 	#Pass in a single string
-# 	# return render_template('hello.html', name=name)
-
-# 	#Pass in a json object
-# 	url_raw = url_for('hello', name=name)
-# 	resp_dict = {"query_string": url_raw,
-# 				"username": name}
-# 	resp_j = json.dumps(resp_dict)
-# 	return render_template('hello.html', name=resp_j)
-
-############# URL QUERY STRING ############
-#TEST URL: http://127.0.0.1:5000/query?content_type=movie&search_terms=dark+knight
-@app.route("/query")
-def query():
-	args = request.args
-	content_type = args['content_type']
-	search_terms = args['search_terms']
-	#Construct url
-
-
-	return "Check console for output", 200
-
-
 
 
