@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TMDB App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+/*HORIZONTAL TITLE BAR */
+.topnav {
+  overflow: hidden;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 61%, rgba(192,14,11,1) 87%);
+
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.active {
+  color: white;
+}
+
+/*HORIZONTAL CONTAINER FOR SIDE BAR AND CONTENT */
+.row {
+  width:1200px;
+  height:800px;
+  position:relative;
+}
+
+/*VERTICAL LEFT NAV BAR*/
+.sidenav {
+  float: left;
+  height: 100%;
+  width: 160px;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: black;
+  color: white;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/***** OPTION 1: HOME PAGE *****/
+.column_home {
+  float: left;
+  display: inline-block;
+  resize: none;
+  padding: 10px;
+  height: 100%;
+  background: black;
+  color: white;
+  font-family: Arial;
+  max-width: 1000px;
+}
+
+.flex-container-detail {
+  display: flex;
+  flex-direction: column;
+  padding-left: 100px;
+}
+
+.flex-container-detail > div > div {
+  background-color: #black;
+  margin: 10px;
+  border-left: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.container-record {
+  position: absolute;
+  font-family: Arial;
+  width: 750px;
+  top: 40px;
+}
+
+.container-record-2 {
+  position: absolute;
+  font-family: Arial;
+  width: 750px;
+  top: 470px;
+}
+
+.text-block {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  color: white;
+  padding: 20px;
+  background: rgba(40,41,34, 0.6);
+  text-align: center;
+  font-size: 18;
+}
+
+/***** OPTION 2: SEARCH PAGE *****/
+.column_search {
+  float: left;
+  display: none;
+  resize: none;
+  padding: 10px;
+  height: 100%;
+  background: black;
+  color: black;
+  font-family: Arial;
+  max-width: 1000px;
+  min-height: 100%;
+}
+
+.outer_search_container {
+  width:500px;
+  height:200px;
+  position:fixed;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: rgb(2,0,36);
+  background: linear-gradient(360deg, rgba(2,0,36,1) 6%, rgba(192,14,11,1) 45%);
+}
+
+.flex-container > div {
+  position: relative;
+  margin: 10px;
+  text-align: center;
+}
+
+/*SEARCH */
+.search_results {
+  position: relative;
+}
+/*SEARCH RESULT RECORDS */
+.flex-container-record {
+  display: flex;
+}
+
+.flex-container-record > div {
+  background-color: black;
+  color: white;
+}
+
+.show-more-button {
+  border-radius: 10px;
+  border: none;
+  color: white;
+  width: 90px;
+  height: 30px;
+  background-color: #c0100d;
+  margin-top: 20px;
+}
+
+/*MODAL */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;  /*Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 0px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%;  /*Full height */
+  overflow: auto;  /*Enable scroll if needed */
+  background-color: #fefefe;
+  /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.4); 
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  margin: 20px;
+  margin-left: 100px;
+  border: 1px solid #888;
+  width: 900px;
+}
+
+/* Close Button */
+.close {
+  color: #aaaaaa;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*DETAIL WITHIN MODAL*/
+.flex-container-detail-2 {
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+}
+
+.flex-container-detail-2 > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.credit_record {
+  background-color: #f1f1f1;
+  width: 200px;
+  color: black;
+  text-align: center;
+  overflow: hidden;
+}
+
+.credit_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail_header {
+  margin-left: 30px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+}
+
+.truncate-overflow {   
+   display: -webkit-box;   
+   -webkit-line-clamp: 3;   
+   -webkit-box-orient: vertical;     
+   overflow: hidden; 
+}
+
+.footer {
+   position: relative;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #c0100d;
+   color: white;
+   text-align: right;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Horizontal nav bar -->
+  <div class="topnav">
+    <a class="active">THE MOVIE DB</a>
+  </div>
+
+  <!-- Container for vertical nav and content -->
+  <div class="row">
+    <!-- Left: vertical nav -->
+    <div class="sidenav">
+      <a onclick="selectView('column_home', 'column_search')" >Home</a>
+      <a onclick="selectView('column_search', 'column_home')">Search</a>
+    </div>
+
+    <!-- Right: content -->
+    <!-- HOME PAGE -->
+    <div id="column_home" class="column_home">
+	  <div class="flex-container-detail">
+	    <h2 style="font-size:18;margin-left:310px;margin-top:0px;">Airing</h2>
+	    <div id="trending" ></div>
+	  </div>
+
+	  <div class="flex-container-detail">
+	    <h2 style="font-size:18;margin-left:310px;margin-top:370px;">Trending</h2>
+	    <div id="airing"></div>
+	  </div>
+    </div>
+
+    <!-- SEARCH PAGE -->
+    <div id="column_search" class="column_search">
+		<form id="content_search_form" name="content_search_form" onsubmit ="return false" >
+			<div id="flex-container" class="flex-container">
+				
+				  <div id="keyword_field" style="width:1000px">
+				  	<label for="search_terms">Keyword</label>
+				  	<input type="text" id="search_terms" name="search_terms" >
+				  </div>
+
+				  <div name="category_field" style="width:1000px">
+				  	<label for="content_type">Category</label>
+				  	<select name="content_type" id="content_type">
+				  		<option value="default"></option>
+					    <option value="movie">Movies</option>
+					    <option value="tv">TV Shows</option>
+					    <option value="multi">Movies and TV Shows</option>
+				  	</select>
+				  </div> 
+
+				  <div style="width:1000px">
+	          <input type="submit" onclick="validateForm()" value="Submit">
+				  	<input type="button" onclick="resetFields()" value="Clear">
+				  </div>
+				
+			</div>
+		</form> 
+
+		<div class="search_results" id="search_results" style="min-height: 450px">
+		</div>
+
+		<!-- TESTING -->
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+		  <!-- Modal content -->
+		  <div id="modal-content" class="modal-content">
+		    <span class="close">&times;</span>
+		    <!-- <p>Some text in the Modal..</p> -->
+		  </div>
+
+		</div>
+
+	  <div class="footer">
+	    <p style="margin: 0px; font-style: italic; padding-top: 10px;">Designed by Mark Mann</p>
+	    <p style="margin: 0px; font-style: italic; padding-bottom: 10px;">Powered by TMDB</p>
+	  </div>
+    	Search
+    </div>
+
+
+   </div>
+
+</body>
+<script src="scripts.js">
+</script>

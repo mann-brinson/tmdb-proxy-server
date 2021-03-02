@@ -57,7 +57,10 @@ class RespParser():
 
                 #Handle nulls 
                 if r[feat] in [None, ""]:
-                    result[feat] = ""
+                    if feat == "backdrop_path":
+                        result[feat] = self.backdrop_null
+                    else:
+                        result[feat] = ""
 
                 #Handle not nulls
                 #release_date - extract year
@@ -124,7 +127,8 @@ class RespParser():
                 if feat in person:
                     #Handle nulls
                     if person[feat] in [None, ""]:
-                        record[feat] = ""
+                        if feat == 'profile_path':
+                            record[feat] = self.profile_null
 
                     #Handle not-nulls
                     #profile path
