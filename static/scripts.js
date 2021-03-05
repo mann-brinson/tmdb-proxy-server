@@ -130,7 +130,7 @@ function showSlides(item_type, slideIndex) {
 
   trend_items[slideIndex-1].style.display = "block";
   // setTimeout(showSlides, 2000); // Change image every 2 secs
-  setTimeout(showSlides.bind(null, item_type, slideIndex), 2000);
+  setTimeout(showSlides.bind(null, item_type, slideIndex), 5000);
 
   // trend_items[0].style.display = "block";
 }

@@ -3,7 +3,8 @@
 <head>
   <title>TMDB App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
   <style>
 body {
   margin: 0;
@@ -73,8 +74,9 @@ body {
   height: 100%;
   background: black;
   color: white;
-  font-family: Arial;
-  max-width: 1000px;
+  /*font-family: Arial;*/
+  width: 1000px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .flex-container-detail {
@@ -93,14 +95,14 @@ body {
 
 .container-record {
   position: absolute;
-  font-family: Arial;
+  /*font-family: Arial;*/
   width: 750px;
   top: 40px;
 }
 
 .container-record-2 {
   position: absolute;
-  font-family: Arial;
+  /*font-family: Arial;*/
   width: 750px;
   top: 470px;
 }
@@ -286,15 +288,21 @@ body {
     <!-- Right: content -->
     <!-- HOME PAGE -->
     <div id="column_home" class="column_home">
-	  <div class="flex-container-detail">
-	    <h2 style="font-size:18;margin-left:310px;margin-top:0px;">Airing</h2>
-	    <div id="trending" ></div>
-	  </div>
+      <div class="flex-container-detail">
+        <h2 style="font-size:18;margin-left:310px;margin-top:0px;">Trending Movies</h2>
+        <div id="airing"></div>
+      </div>
 
-	  <div class="flex-container-detail">
-	    <h2 style="font-size:18;margin-left:310px;margin-top:370px;">Trending</h2>
-	    <div id="airing"></div>
-	  </div>
+  	  <div class="flex-container-detail">
+  	    <h2 style="font-size:18;margin-left:270px;margin-top:370px;">TV Shows On-Air Today</h2>
+  	    <div id="trending" ></div>
+  	  </div>
+
+      <div class="footer">
+        <p style="margin: 0px; font-style: italic; padding-top: 10px;margin-top: 450px">Designed by Mark Mann</p>
+        <p style="margin: 0px; font-style: italic; padding-bottom: 10px;">Powered by TMDB</p>
+      </div>
+
     </div>
 
     <!-- SEARCH PAGE -->
@@ -344,7 +352,6 @@ body {
 	    <p style="margin: 0px; font-style: italic; padding-top: 10px;">Designed by Mark Mann</p>
 	    <p style="margin: 0px; font-style: italic; padding-bottom: 10px;">Powered by TMDB</p>
 	  </div>
-    	Search
     </div>
 
 
