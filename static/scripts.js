@@ -245,15 +245,17 @@ function divsFromJsonSearch(req) {
       col1.classList.add("col_1");
       record.appendChild(col1);
 
+      //Left vertical flair
+      var margin = document.createElement("div");
+      margin.style.cssText = "background-color:#c0100d;width:4px;height:277px;position:absolute;";
+      col1.appendChild(margin);
+
       //Poster path
       var img2 = document.createElement("img"); 
       const poster_path = search_result[i]['poster_path'];
-      console.log({'poster_path': poster_path});
       img2.setAttribute('src', poster_path);
-      // img2.src = "";
-      // img2.src = poster_path;
-      console.log({'poster_set': img2.src});
       img2.style.width = "185px";
+      img2.style.cssText = "width:185px;padding-left:8px;"
       col1.appendChild(img2);
 
       //// COL 2
@@ -451,7 +453,7 @@ function divsFromJsonDetail(req, content_type) {
   // Stars, votes
   var row3_det = document.createElement("div");
   var vote_a = document.createElement("span");
-  vote_a.style.cssText = "color: #c0100d; padding-right: 10px";
+  vote_a.style.cssText = "color: #c0100d; padding-right: 10px; margin: 0px;";
   var vote_avg = details['vote_average'];
   var message1 = `&#9733 ${vote_avg}`;
   vote_a.innerHTML = message1;
@@ -594,7 +596,7 @@ function divsFromJsonDetail(req, content_type) {
 
     //margin
     var margin = document.createElement("div");
-    margin.style.cssText = "color:grey;margin: 2px;text-align: center;";
+    margin.style.cssText = "color:#c2c2c2;margin: 2px;text-align: center;";
     margin.innerHTML = "___________________________________________________________________________________________";
     row4.appendChild(margin);
   }
@@ -616,8 +618,8 @@ function divsFromJsonDetail(req, content_type) {
   var span = document.getElementsByClassName("close")[0];
 
   //Fix the background
-  var body = document.getElementById("search_results");
-  body.style.position = 'fixed';
+  // var body = document.getElementById("search_results");
+  // body.style.position = 'fixed';
 
   // Display the finished modal
   modal.style.display = "block";
