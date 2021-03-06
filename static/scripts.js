@@ -70,8 +70,8 @@ function divsFromJson(req, movie_type, item_type) {
     // console.log(movie_sub[i]['name']);
 
     var slide = document.createElement("div"); //Item header
-    // slide.style.cssText ="left-padding:100px;";
     slide.classList.add(item_type);
+    slide.classList.add("fade");
     
     if (movie_type == "trending") {
       slide.classList.add("container-record");
