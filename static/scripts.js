@@ -2,11 +2,16 @@
 // console.log(document.styleSheets[0]);
 
 ///// SWITCH SCREENS FUNCTIONALITY /////
-function selectView(active_page_type, inactive_page_type) {
+function selectView(active_page_type, inactive_page_type, active_tab, inactive_tab) {
   var active_page = document.getElementById(active_page_type);
   var inactive_page = document.getElementById(inactive_page_type);
+  var active_tab = document.getElementById(active_tab);
+  var inactive_tab = document.getElementById(inactive_tab);
+
   active_page.style.display = "inline-block";
   inactive_page.style.display = "none";
+  active_tab.style.color = "#c0100d";
+  inactive_tab.style.color = "white";
 }
 
 // Works if CORS enabled on flask server
@@ -581,11 +586,17 @@ function divsFromJsonDetail(req, content_type) {
     //content
     var row3_rev = document.createElement("div");
     row3_rev.classList.add("truncate-overflow");
-    row3_rev.style.cssText = "border-bottom: 1px solid black";
+    // row3_rev.style.cssText = "border-bottom: 1px solid black";
     row3_rev.innerHTML = reviews[i]['content'];
     review.appendChild(row3_rev);
 
     row4.appendChild(review);
+
+    //margin
+    var margin = document.createElement("div");
+    margin.style.cssText = "color:grey;margin: 2px;text-align: center;";
+    margin.innerHTML = "___________________________________________________________________________________________";
+    row4.appendChild(margin);
   }
   modal_container.appendChild(row4);
 
