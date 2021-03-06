@@ -3,7 +3,8 @@
 <head>
   <title>TMDB App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
   <style>
 body {
   margin: 0;
@@ -28,14 +29,11 @@ body {
   font-size: 17px;
 }
 
-.topnav a.active {
-  color: white;
-}
-
 /*HORIZONTAL CONTAINER FOR SIDE BAR AND CONTENT */
 .row {
   width:1200px;
-  height:800px;
+  /*height:800px;*/
+  height:100%;
   position:relative;
 }
 
@@ -48,7 +46,6 @@ body {
   top: 0;
   left: 0;
   background-color: black;
-  color: white;
   padding-top: 20px;
 }
 
@@ -56,7 +53,7 @@ body {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  text-align: right;
   display: block;
 }
 
@@ -73,14 +70,18 @@ body {
   height: 100%;
   background: black;
   color: white;
-  font-family: Arial;
-  max-width: 1000px;
+  /*font-family: Arial;*/
+  width: 1000px;
+  /*font-family: 'Raleway', sans-serif;*/
+  /*overflow:auto;*/
+  border-left: 1px solid white;
 }
 
 .flex-container-detail {
   display: flex;
   flex-direction: column;
   padding-left: 100px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .flex-container-detail > div > div {
@@ -93,14 +94,14 @@ body {
 
 .container-record {
   position: absolute;
-  font-family: Arial;
+  /*font-family: Arial;*/
   width: 750px;
   top: 40px;
 }
 
 .container-record-2 {
   position: absolute;
-  font-family: Arial;
+  /*font-family: Arial;*/
   width: 750px;
   top: 470px;
 }
@@ -117,6 +118,24 @@ body {
   font-size: 18;
 }
 
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
 /***** OPTION 2: SEARCH PAGE *****/
 .column_search {
   float: left;
@@ -126,9 +145,13 @@ body {
   height: 100%;
   background: black;
   color: black;
-  font-family: Arial;
+  /*font-family: Arial;*/
   max-width: 1000px;
-  min-height: 100%;
+  overflow:auto;
+  border-left: 1px solid white;
+  font-family: 'Raleway', sans-serif;
+
+  /*min-height: 100%;*/
 }
 
 .outer_search_container {
@@ -154,6 +177,7 @@ body {
 /*SEARCH */
 .search_results {
   position: relative;
+  /*border-left: 1px solid white;*/
 }
 /*SEARCH RESULT RECORDS */
 .flex-container-record {
@@ -175,9 +199,14 @@ body {
   margin-top: 20px;
 }
 
+.show-more-button:hover{
+  color:white;
+  background-color:#c2c2c2;
+}
+
 /*MODAL */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;  /*Hidden by default */
   position: fixed;  /*Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 0px; /* Location of the box */
@@ -226,6 +255,7 @@ body {
 .flex-container-detail-2 > div {
   background-color: #f1f1f1;
   margin: 10px;
+  /*margin-left: 0px;*/
   text-align: left;
   font-size: 14px;
 }
@@ -259,50 +289,81 @@ body {
 
 .footer {
    position: relative;
-   left: 0;
-   bottom: 0;
+   /*left: 0;*/
+   /*bottom: 0;*/
    width: 100%;
    background-color: #c0100d;
    color: white;
    text-align: right;
+   /*overflow: hidden;*/
 }
+
+.home_tab{
+  color: #c0100d;
+}
+
+.search_tab{
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+@import {
+  font-family: 'Raleway', sans-serif;
+  /*font-family: 'Raleway';*/
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap');
+  font-weight: 400;
+}
+
+@import {
+  font-family: 'Raleway', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;500;600&display=swap');
+  font-weight: 200;
+}
+
   </style>
 </head>
 <body>
 
   <!-- Horizontal nav bar -->
   <div class="topnav">
-    <a class="active">THE MOVIE DB</a>
+    <a style="color:#c0100d;font-size:24px;">THE MOVIE DB</a>
   </div>
 
   <!-- Container for vertical nav and content -->
   <div class="row">
     <!-- Left: vertical nav -->
     <div class="sidenav">
-      <a onclick="selectView('column_home', 'column_search')" >Home</a>
-      <a onclick="selectView('column_search', 'column_home')">Search</a>
+      <a id="home_tab" class="home_tab" onclick="selectView('column_home', 'column_search', 'home_tab', 'search_tab')" >Home &#8594;</a>
+      <a id="search_tab" class="search_tab" onclick="selectView('column_search', 'column_home', 'search_tab', 'home_tab')">Search &#8594;</a>
     </div>
 
     <!-- Right: content -->
     <!-- HOME PAGE -->
     <div id="column_home" class="column_home">
-	  <div class="flex-container-detail">
-	    <h2 style="font-size:18;margin-left:310px;margin-top:0px;">Airing</h2>
-	    <div id="trending" ></div>
-	  </div>
+      <div class="flex-container-detail">
+        <h2 style="font-size:18;margin-left:310px;margin-top:0px;">Trending Movies</h2>
+        <div id="airing"></div>
+      </div>
 
-	  <div class="flex-container-detail">
-	    <h2 style="font-size:18;margin-left:310px;margin-top:370px;">Trending</h2>
-	    <div id="airing"></div>
-	  </div>
+  	  <div class="flex-container-detail">
+  	    <h2 style="font-size:18;margin-left:270px;margin-top:370px;">TV Shows On-Air Today</h2>
+  	    <div id="trending" ></div>
+  	  </div>
+
+      <div class="footer">
+        <p style="margin: 0px; font-style: italic; padding-top: 10px;margin-top: 450px">Designed by Mark Mann</p>
+        <p style="margin: 0px; font-style: italic; padding-bottom: 10px;">Powered by TMDB</p>
+      </div>
+
     </div>
 
     <!-- SEARCH PAGE -->
     <div id="column_search" class="column_search">
 		<form id="content_search_form" name="content_search_form" onsubmit ="return false" >
 			<div id="flex-container" class="flex-container">
-				
-				  <div id="keyword_field" style="width:1000px">
+				<div style="font-family: 'Open Sans', sans-serif; font-weight: 400;">Search</div>
+				  
+          <div id="keyword_field" style="width:1000px">
 				  	<label for="search_terms">Keyword</label>
 				  	<input type="text" id="search_terms" name="search_terms" >
 				  </div>
@@ -344,7 +405,6 @@ body {
 	    <p style="margin: 0px; font-style: italic; padding-top: 10px;">Designed by Mark Mann</p>
 	    <p style="margin: 0px; font-style: italic; padding-bottom: 10px;">Powered by TMDB</p>
 	  </div>
-    	Search
     </div>
 
 
