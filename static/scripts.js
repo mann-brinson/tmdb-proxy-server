@@ -266,7 +266,8 @@ function divsFromJsonSearch(req) {
 
       //Title
       var row1 = document.createElement("h2");
-      row1.style.width = "500px";
+      // row1.style.width = "500px";
+      row1.style.cssText = "font-family: 'Open Sans', sans-serif; font-weight: 400;";
       if (search_result[i]["media_type"] == "movie") {
         row1.innerHTML = search_result[i]['title'];
       } else if (search_result[i]["media_type"] == "tv") {
@@ -291,6 +292,7 @@ function divsFromJsonSearch(req) {
 
       //Vote_avg and votes
       var row3 = document.createElement("div");
+      row3.style.cssText = "padding-bottom: 10px;";
       var vote_a = document.createElement("span");
       vote_a.style.cssText = "color: #c0100d; padding-right: 10px";
       var vote_avg = search_result[i]['vote_average'];
@@ -335,7 +337,7 @@ function divsFromJsonSearch(req) {
     // Now, add the newly created table with json data, to a container.
     var divShowData = document.getElementById("search_results");
     var head = document.createElement("h2");
-    head.style.cssText = "color: white;";
+    head.style.cssText = "color: white;font-family: 'Open Sans', sans-serif; font-weight: 400;";
     head.innerHTML = "Showing results...";
     head.style.width = "500px";
     divShowData.innerHTML = "";
@@ -421,12 +423,13 @@ function divsFromJsonDetail(req, content_type) {
   // Title
   var row1_det = document.createElement("h2");
   row1_det.className = "flex-container-record";
+  row1_det.style.cssText = "font-family: 'Open Sans', sans-serif; font-weight: 400;";
   if (content_type == "movie") {
     row1_det.innerHTML = details['title'];
   } else if (content_type == "tv") {
     row1_det.innerHTML = details['name'];
   }
-      row2.appendChild(row1_det);
+  row2.appendChild(row1_det);
 
   // Info box
   var info = document.createElement("a");
@@ -452,6 +455,7 @@ function divsFromJsonDetail(req, content_type) {
 
   // Stars, votes
   var row3_det = document.createElement("div");
+  row3_det.style.cssText = "padding-bottom: 10px;";
   var vote_a = document.createElement("span");
   vote_a.style.cssText = "color: #c0100d; padding-right: 10px; margin: 0px;";
   var vote_avg = details['vote_average'];
@@ -486,7 +490,8 @@ function divsFromJsonDetail(req, content_type) {
   //Cast header
   var header = document.createElement("h3");
   header.innerHTML = "Cast";
-  header.style.cssText = "padding-left: 30px; margin: 0px;";
+  // header.style.cssText = "padding-left: 30px; margin: 0px;";
+  header.style.cssText = "padding-left: 30px; margin: 0px; font-family: 'Open Sans', sans-serif; font-weight: 400;";
   modal_container.appendChild(header);
 
   var row3 = document.createElement("div");
@@ -505,32 +510,34 @@ function divsFromJsonDetail(req, content_type) {
     record.style.overflow = "hidden";
 
     //Profile path
-        var img = document.createElement("img"); 
-        const profile_path = credits[i]['profile_path']
-        img.src = profile_path;
-        img.style.width = "185px";
-        record.appendChild(img);
+    var img = document.createElement("img"); 
+    const profile_path = credits[i]['profile_path']
+    img.src = profile_path;
+    img.style.width = "185px";
+    record.appendChild(img);
 
-        // Name
-        var name_div = document.createElement("div");
-        name_div.className = "credit_name";
-        name_div.style.fontWeight = "bold";
-        name_div.style.overflow = "hidden";
-        name_div.style.textOverflow = "ellipsis";
+    // Name
+    var name_div = document.createElement("div");
+    name_div.className = "credit_name";
+    name_div.style.cssText = "font-family: 'Open Sans', sans-serif; font-weight: 400;";
 
-        name_div.innerHTML = credits[i]['name'];
-        record.appendChild(name_div)
+    // name_div.style.fontWeight = "bold";
+    name_div.style.overflow = "hidden";
+    name_div.style.textOverflow = "ellipsis";
 
-        // AS
-        var as_div = document.createElement("div");
-        as_div.innerHTML = "AS";
-        record.appendChild(as_div)
+    name_div.innerHTML = credits[i]['name'];
+    record.appendChild(name_div)
 
-        // Character
-        var char_div = document.createElement("div");
-        char_div.className = "credit_name";
-        char_div.innerHTML = credits[i]['character'];
-        record.appendChild(char_div)
+    // AS
+    var as_div = document.createElement("div");
+    as_div.innerHTML = "AS";
+    record.appendChild(as_div)
+
+    // Character
+    var char_div = document.createElement("div");
+    char_div.className = "credit_name";
+    char_div.innerHTML = credits[i]['character'];
+    record.appendChild(char_div)
 
     var row_id = Math.floor(i/4);
     if (i in [0, 4]) {
@@ -549,7 +556,8 @@ function divsFromJsonDetail(req, content_type) {
   var header = document.createElement("h3");
   // header.className = "detail_header";
   header.innerHTML = "Reviews";
-  header.style.cssText = "padding-left: 30px; padding-top: 10px; margin: 0px;";
+  header.style.cssText = "font-family: 'Open Sans', sans-serif; font-weight: 400; padding-left: 30px; padding-top: 10px; margin: 0px;";
+
   modal_container.appendChild(header);
 
   var row4 = document.createElement("div");
@@ -563,7 +571,8 @@ function divsFromJsonDetail(req, content_type) {
     //username at created_date
     var row1_rev = document.createElement("div");
     var user_a = document.createElement("span");
-    user_a.style.cssText = "font-weight: bold; padding-right: 5px;";
+    // user_a.style.cssText = "font-weight: bold; padding-right: 5px;";
+    user_a.style.cssText = "font-family: 'Open Sans', sans-serif; font-weight: 400; padding-right: 5px;";
     user_a.innerHTML = reviews[i]['username'];
     row1_rev.appendChild(user_a);
 
@@ -596,20 +605,20 @@ function divsFromJsonDetail(req, content_type) {
 
     //margin
     var margin = document.createElement("div");
-    margin.style.cssText = "color:#c2c2c2;margin: 2px;text-align: center;";
-    margin.innerHTML = "___________________________________________________________________________________________";
+    margin.style.cssText = "color:#c2c2c2; margin:2px; text-align:center; font-family: Arial, Helvetica, sans-serif;";
+    margin.innerHTML = "__________________________________________________________________________________";
     row4.appendChild(margin);
   }
   modal_container.appendChild(row4);
 
   //// Add margin at bottom
 
-    //// Now, add the newly created table with json data, to a container.
-    var divShowData = document.getElementById("modal-content");
-    divShowData.innerHTML = "";
-    divShowData.appendChild(modal_container);
+  //// Now, add the newly created table with json data, to a container.
+  var divShowData = document.getElementById("modal-content");
+  divShowData.innerHTML = "";
+  divShowData.appendChild(modal_container);
 
-    //// Display the finished modal 
+  //// Display the finished modal 
 
   // Get the modal
   var modal = document.getElementById("myModal");

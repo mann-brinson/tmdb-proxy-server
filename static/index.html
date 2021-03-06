@@ -32,7 +32,8 @@ body {
 /*HORIZONTAL CONTAINER FOR SIDE BAR AND CONTENT */
 .row {
   width:1200px;
-  height:800px;
+  /*height:800px;*/
+  height:100%;
   position:relative;
 }
 
@@ -72,6 +73,8 @@ body {
   /*font-family: Arial;*/
   width: 1000px;
   /*font-family: 'Raleway', sans-serif;*/
+  /*overflow:auto;*/
+  border-left: 1px solid white;
 }
 
 .flex-container-detail {
@@ -124,9 +127,13 @@ body {
   height: 100%;
   background: black;
   color: black;
-  font-family: Arial;
+  /*font-family: Arial;*/
   max-width: 1000px;
-  min-height: 100%;
+  overflow:auto;
+  border-left: 1px solid white;
+  font-family: 'Raleway', sans-serif;
+
+  /*min-height: 100%;*/
 }
 
 .outer_search_container {
@@ -152,6 +159,7 @@ body {
 /*SEARCH */
 .search_results {
   position: relative;
+  /*border-left: 1px solid white;*/
 }
 /*SEARCH RESULT RECORDS */
 .flex-container-record {
@@ -278,6 +286,20 @@ body {
 
 .search_tab{
   color: white;
+  border-bottom: 1px solid white;
+}
+
+@import {
+  font-family: 'Raleway', sans-serif;
+  /*font-family: 'Raleway';*/
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap');
+  font-weight: 400;
+}
+
+@import {
+  font-family: 'Raleway', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;500;600&display=swap');
+  font-weight: 200;
 }
 
   </style>
@@ -321,8 +343,9 @@ body {
     <div id="column_search" class="column_search">
 		<form id="content_search_form" name="content_search_form" onsubmit ="return false" >
 			<div id="flex-container" class="flex-container">
-				
-				  <div id="keyword_field" style="width:1000px">
+				<div style="font-family: 'Open Sans', sans-serif; font-weight: 400;">Search</div>
+				  
+          <div id="keyword_field" style="width:1000px">
 				  	<label for="search_terms">Keyword</label>
 				  	<input type="text" id="search_terms" name="search_terms" >
 				  </div>
