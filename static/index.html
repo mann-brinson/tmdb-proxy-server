@@ -150,14 +150,26 @@ body {
   overflow:auto;
   border-left: 1px solid white;
   font-family: 'Raleway', sans-serif;
-
-  /*min-height: 100%;*/
 }
 
 .outer_search_container {
   width:500px;
   height:200px;
   position:fixed;
+}
+
+.search_button{
+  background-color: black;
+  color: white;
+  border-style: solid;
+  border-color: black;
+  width: 70px;
+  height: 30px;
+  margin-left: 20px;
+}
+
+.search_button:hover{
+  background-color: #c0100d;
 }
 
 .flex-container {
@@ -379,8 +391,8 @@ body {
 				  </div> 
 
 				  <div style="width:1000px">
-	          <input type="submit" onclick="validateForm()" value="Submit">
-				  	<input type="button" onclick="resetFields()" value="Clear">
+	          <input class="search_button" type="submit" onclick="validateForm()" value="Submit">
+				  	<input class="search_button" type="button" onclick="resetFields()" value="Clear">
 				  </div>
 				
 			</div>
