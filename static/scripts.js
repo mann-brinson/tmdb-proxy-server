@@ -403,6 +403,7 @@ function divsFromJsonDetail(req, content_type) {
   const backdrop_path = details['backdrop_path']
   img.src = backdrop_path;
   img.style.width = "780px";
+  img.style.height = "370px";
   img.style.marginLeft = "auto";
   img.style.marginRight = "auto";
   row1.appendChild(img);
