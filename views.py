@@ -141,6 +141,9 @@ class SearchPage():
             items_extract.append(record)
 
         #Feature engineering
+
+        #Test: look at self.genre_map structure
+        # print(self.genre_map)
         for idx, m in enumerate(items_extract):
             #Construct poster path, and add back to items_extract
             poster_path = m['poster_path']
@@ -158,8 +161,11 @@ class SearchPage():
                     if self.content_type in ["movie", "tv"]: g_type = self.content_type
                     elif self.content_type == "multi": g_type = m["media_type"]
 
-                    g_name = self.genre_map[g_type][g_id]
-                    g_names.append(g_name)
+                    #Check if g_id is within genre_map first
+                    if g_id in self.genre_map[g_type]:
+                        g_name = self.genre_map[g_type][g_id]
+                        g_names.append(g_name)
+                        
                 items_extract[idx].pop('genre_ids', None)
                 items_extract[idx]['genres'] = g_names
             
